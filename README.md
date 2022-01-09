@@ -53,13 +53,3 @@ This unitial code was developed by [![Twitter URL](https://img.shields.io/twitte
 
 ## Disclaimer
 Please use this code at your own risk.  If you modify certain variables to be beyond certain ranges, you may end up with bad results.  Always test first and optimize after.
-
-<pre>
-                                             .__                 .__   
-  ____   ____    ____ ___  __  ____  ___  ___|__|  ____  _____   |  |  
-_/ ___\ /  _ \  /    \\  \/ /_/ __ \ \  \/  /|  |_/ ___\ \__  \  |  |  
-\  \___(  <_> )|   |  \\   / \  ___/  >    < |  |\  \___  / __ \_|  |__
- \___  >\____/ |___|  / \_/   \___  >/__/\_ \|__| \___  >(____  /|____/
-     \/             \/            \/       \/         \/      \/       
-		 
-</pre>
