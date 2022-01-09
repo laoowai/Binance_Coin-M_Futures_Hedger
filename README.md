@@ -1,5 +1,9 @@
 `Binance Futures Coin-M Hedger`                                                        
 
+## Important notes
+1. This code utilizes the JaggedSoft PHP Binance API library (https://github.com/jaggedsoft/php-binance-api).  I've added various pieces of code to bring that library up to date to interact with the Binance Coin-M futures.
+2. This unitial code was developed by [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/Convexical.svg?style=social&label=Convexical)](https://twitter.com/Convexical) - https://twitter.com/Convexical
+
 ## What is this project?
 This project contains code that automates / places various trades (long [buy] & short [sell]) to create a hedge (synthetic USD) of your COIN-M Futures Wallet on Binance.  For example, if you deposit 1 BTC on Binance under your spot wallet and transfer it into your Binance COIN-M futures account, it will automatically place trades until you are hedged (aka it will create short limit orders).  You can also set a min/max amount per order that the bot will randomize with to get your current open position to be hedged to your Coin-M Futures wallet balance.  If you choose to run the code with a cronjob or scheduler, it will continuously monitor your wallet balance and appropriately buy or sell to get the current open position to match your wallet balance.
 
@@ -46,10 +50,6 @@ As of the release of this code, I have not tested it fully on other coins / toke
 
 ## How do I get support for this program?
 If you're looking for support on how to set this up or you just want to reach out, please contact me on Twitter - https://twitter.com/Convexical.
-
-## Important notes
-This code utilizes the JaggedSoft PHP Binance API library (https://github.com/jaggedsoft/php-binance-api).  I've added various pieces of code to bring that library up to date to interact with the Binance Coin-M futures.
-This unitial code was developed by [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/Convexical.svg?style=social&label=Convexical)](https://twitter.com/Convexical) - https://twitter.com/Convexical
 
 ## Disclaimer
 Please use this code at your own risk.  If you modify certain variables to be beyond certain ranges, you may end up with bad results.  Always test first and optimize after.
