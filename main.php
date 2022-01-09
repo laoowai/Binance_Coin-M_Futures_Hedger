@@ -13,15 +13,15 @@ include(__DIR__."/functions.php");
 $delivery_account_informations = $api->delivery_account_information();
 
 foreach($delivery_account_informations['assets'] as $asset) {
-	if ($asset['asset'] == 'BTC') {
-		$user['futures_wallet_amount_BTC'] = $asset;
+	if ($asset['asset'] == 'BNB') {
+		$user['futures_wallet_amount_BNB'] = $asset;
 //		print_r($asset);
 		break 1;
 	}
 }
 
 foreach($delivery_account_informations['positions'] as $position) {	
-	if ($position['symbol'] == 'BTCUSD_PERP') {
+	if ($position['symbol'] == 'BNBBUSD_PERP') {
 		$user['futures_current_position'] = $position;
 // 		print_r($position);
 		break 1;
@@ -31,19 +31,19 @@ foreach($delivery_account_informations['positions'] as $position) {
 // print_r($user);
 
 // calculate difference / delta in the wallet vs. position
-$delta_wallet_position_amt = $user['futures_wallet_amount_BTC']['walletBalance'] - (abs($user['futures_current_position']['notionalValue']) - abs($user['futures_wallet_amount_BTC']['unrealizedProfit']));
+$delta_wallet_position_amt = $user['futures_wallet_amount_BNB']['walletBalance'] - (abs($user['futures_current_position']['notionalValue']) - abs($user['futures_wallet_amount_BNB']['unrealizedProfit']));
 $abs_delta_wallet_position_amt = abs($delta_wallet_position_amt);
 
 print "Delta btwn Wallet / Position Amt = {$delta_wallet_position_amt}\n";
 
 // which one is larger?  wallet or notionalValue (-profLoss)
-if ($abs_delta_wallet_position_amt < $_GLOBALS['delta_amount_in_btc_to_stop_trading']) {
-	die("WalletBalance / OpenPosition are very close to : {$abs_delta_wallet_position_amt} BTC - stopping trading\n");	
-} else if ($user['futures_wallet_amount_BTC']['walletBalance'] > ((abs($user['futures_current_position']['notionalValue']) - abs($user['futures_wallet_amount_BTC']['unrealizedProfit'])))) {
-	print "WalletBalance is larger by {$abs_delta_wallet_position_amt} BTC so I have to short more.\n";
+if ($abs_delta_wallet_position_amt < $_GLOBALS['delta_amount_in_bnb_to_stop_trading']) {
+	die("WalletBalance / OpenPosition are very close to : {$abs_delta_wallet_position_amt} bnb - stopping trading\n");	
+} else if ($user['futures_wallet_amount_BNB']['walletBalance'] > ((abs($user['futures_current_position']['notionalValue']) - abs($user['futures_wallet_amount_BNB']['unrealizedProfit'])))) {
+	print "WalletBalance is larger by {$abs_delta_wallet_position_amt} bnb so I have to short more.\n";
 	$direction_to_go = "SELL";
 } else {
-	print "NotionalValue +/- ProfLoss is Larger by {$abs_delta_wallet_position_amt} BTC so I have to buy / cover.\n";
+	print "NotionalValue +/- ProfLoss is Larger by {$abs_delta_wallet_position_amt} bnb so I have to buy / cover.\n";
 	$direction_to_go = "BUY";
 }
 
@@ -57,27 +57,27 @@ print_r($ticker);
 die();
 */
 
-// -- set the max / min values based on the delta btc amt
+// -- set the max / min values based on the delta bnb amt
 $max_trade_size = $_GLOBALS['per_order_max'];
 $min_trade_size = $_GLOBALS['per_order_min'];
 
-$amount_in_btc = mt_rand($min_trade_size*100, $max_trade_size*100)/100; // number of COIN for buy / sell
+$amount_in_bnb = mt_rand($min_trade_size*100, $max_trade_size*100)/100; // number of COIN for buy / sell
 
 // if the open position is close to the wallet balance, the next order amount submitted doesn't cause the open position to go beyond the delta - aka it adjusts the new orders to help get close to the wallet balance and create a perfect hedge and eventually stop the script from submitting new orders
-if ($amount_in_btc > $abs_delta_wallet_position_amt) {
-	$min_trade_size = 0.01;
+if ($amount_in_bnb > $abs_delta_wallet_position_amt) {
+	$min_trade_size = 0.05;
 	$max_trade_size = $abs_delta_wallet_position_amt;
-	$amount_in_btc = mt_rand($min_trade_size*100, $max_trade_size*100)/100; // number of COIN for buy / sell
+	$amount_in_bnb = mt_rand($min_trade_size*100, $max_trade_size*100)/100; // number of COIN for buy / sell
 }
 
-$amount_in_USD = $amount_in_btc*$ticker['bidPrice'];
-$amount = round(($amount_in_btc*$ticker['bidPrice'])/100);
+$amount_in_USD = $amount_in_bnb*$ticker['bidPrice'];
+$amount = round(($amount_in_bnb*$ticker['bidPrice'])/100);
 
-// convert the $amount into BTC amount
+// convert the $amount into bnb amount
 print <<<EOD
 max_trade_size: {$max_trade_size}
 min_trade_size: {$min_trade_size}
-Amount in BTC: {$amount_in_btc}
+Amount in BNB: {$amount_in_bnb}
 Amount in USD: {$amount_in_USD}
 Ticker: {$ticker['bidPrice']}
 Amount in Contracts: {$amount}
