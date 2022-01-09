@@ -70,7 +70,7 @@ if ($amount_in_bnb > $abs_delta_wallet_position_amt) {
 	$amount_in_bnb = mt_rand($min_trade_size*100, $max_trade_size*100)/100; // number of COIN for buy / sell
 }
 
-$amount_in_USD = $amount_in_bnb*$ticker['bidPrice'];
+$amount_in_BUSD = $amount_in_bnb*$ticker['bidPrice'];
 $amount = round(($amount_in_bnb*$ticker['bidPrice'])/100);
 
 // convert the $amount into bnb amount
@@ -78,7 +78,7 @@ print <<<EOD
 max_trade_size: {$max_trade_size}
 min_trade_size: {$min_trade_size}
 Amount in BNB: {$amount_in_bnb}
-Amount in USD: {$amount_in_USD}
+Amount in BUSD: {$amount_in_BUSD}
 Ticker: {$ticker['bidPrice']}
 Amount in Contracts: {$amount}
 Direction to go: {$direction_to_go}
