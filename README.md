@@ -1,16 +1,3 @@
-<pre>
-
- _     _                                        _                _              _              _           _   
-| |__ (_)_ __   __ _ _ __   ___ ___    ___ ___ (_)_ __   /\/\   | |__   ___  __| | __ _  ___  | |__   ___ | |_ 
-| '_ \| | '_ \ / _` | '_ \ / __/ _ \  / __/ _ \| | '_ \ /    \  | '_ \ / _ \/ _` |/ _` |/ _ \ | '_ \ / _ \| __|
-| |_) | | | | | (_| | | | | (_|  __/ | (_| (_) | | | | / /\/\ \ | | | |  __/ (_| | (_| |  __/ | |_) | (_) | |_ 
-|_.__/|_|_| |_|\__,_|_| |_|\___\___|  \___\___/|_|_| |_\/    \/ |_| |_|\___|\__,_|\__, |\___| |_.__/ \___/ \__|
-                                                                                  |___/                        
-
-</pre>
-
-Developed by [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/Convexical.svg?style=social&label=Convexical)](https://twitter.com/Convexical) - https://twitter.com/Convexical
-
 `Binance Futures Coin-M Hedger`                                                        
 
 ## Other Languages / Ported code
@@ -67,6 +54,7 @@ If you're looking for support on how to set this up or you just want to reach ou
 
 ## Important notes
 This code utilizes the JaggedSoft PHP Binance API library (https://github.com/jaggedsoft/php-binance-api).  I've added various pieces of code to bring that library up to date to interact with the Binance Coin-M futures.
+This unitial code was developed by [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/Convexical.svg?style=social&label=Convexical)](https://twitter.com/Convexical) - https://twitter.com/Convexical
 
 ## Disclaimer
 Please use this code at your own risk.  If you modify certain variables to be beyond certain ranges, you may end up with bad results.  Always test first and optimize after.
