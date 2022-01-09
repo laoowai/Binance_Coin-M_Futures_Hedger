@@ -108,7 +108,7 @@ $temp_openOrders = $api->delivery_current_all_open_orders($symbol);
 
 $openOrders = array();
 foreach($temp_openOrders as $openOrder) {
-	if ($openOrder['type'] == "LIMIT") {
+	if ($openOrder['type'] == "MARKET") {
 		$openOrders[] = $openOrder;
 	}
 }
@@ -139,7 +139,7 @@ if ($direction_to_go == "BUY") {
 		
 		$price = $ticker['bidPrice'];
 		while (1 == 1) {
-			$order = $api->delivery_create_order($side = "BUY", $symbol, $amount, $price,  $type = "LIMIT", array('newClientOrderId' => $newClientOrderId), false);
+			$order = $api->delivery_create_order($side = "BUY", $symbol, $amount, $price,  $type = "MARKET", array('newClientOrderId' => $newClientOrderId), false);
 
 			print_r($order);
 // 				die();
@@ -147,7 +147,7 @@ if ($direction_to_go == "BUY") {
 			if ($order['status'] != "NEW") {
 				$price -= 0.50;
 
-				$order = $api->delivery_create_order($side = "BUY", $symbol, $amount, $price,  $type = "LIMIT", array('newClientOrderId' => $newClientOrderId), false);
+				$order = $api->delivery_create_order($side = "BUY", $symbol, $amount, $price,  $type = "MARKET", array('newClientOrderId' => $newClientOrderId), false);
 				print_r($order);
 				
 				$price -= 0.50;
@@ -166,13 +166,13 @@ if ($direction_to_go == "BUY") {
 		
 		$price = $ticker['askPrice'];
 		while(1 == 1) {								
-			$order = $api->delivery_create_order($side = "SELL", $symbol, $amount, $price,  $type = "LIMIT", array('newClientOrderId' => $newClientOrderId), false);
+			$order = $api->delivery_create_order($side = "SELL", $symbol, $amount, $price,  $type = "MARKET", array('newClientOrderId' => $newClientOrderId), false);
 
 			print_r($order);
 			if ($order['status'] != "NEW") {
 				$price += 0.50;
 
-				$order = $api->delivery_create_order($side = "SELL", $symbol, $amount, $price,  $type = "LIMIT", array('newClientOrderId' => $newClientOrderId), false);
+				$order = $api->delivery_create_order($side = "SELL", $symbol, $amount, $price,  $type = "MARKET", array('newClientOrderId' => $newClientOrderId), false);
 				print_r($order);
 				
 				$price += 0.50;
