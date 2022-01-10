@@ -37,13 +37,13 @@ $abs_delta_wallet_position_amt = abs($delta_wallet_position_amt);
 print "Delta btwn Wallet / Position Amt = {$delta_wallet_position_amt}\n";
 
 // which one is larger?  wallet or notionalValue (-profLoss)
-if ($abs_delta_wallet_position_amt < $_GLOBALS['delta_amount_in_bnb_to_stop_trading']) {
+if ($abs_delta_wallet_position_amt < $_GLOBALS['delta_amount_in_busd_to_stop_trading']) {
 	die("WalletBalance / OpenPosition are very close to : {$abs_delta_wallet_position_amt} bnb - stopping trading\n");	
-} else if ($user['futures_wallet_amount_BNB']['walletBalance'] > ((abs($user['futures_current_position']['notionalValue']) - abs($user['futures_wallet_amount_BNB']['unrealizedProfit'])))) {
+} else if ($user['futures_wallet_amount_BUSD']['walletBalance'] > ((abs($user['futures_current_position']['notionalValue']) - abs($user['futures_wallet_amount_BUSD']['unrealizedProfit'])))) {
 	print "WalletBalance is larger by {$abs_delta_wallet_position_amt} bnb so I have to short more.\n";
 	$direction_to_go = "SELL";
 } else {
-	print "NotionalValue +/- ProfLoss is Larger by {$abs_delta_wallet_position_amt} bnb so I have to buy / cover.\n";
+	print "NotionalValue +/- ProfLoss is Larger by {$abs_delta_wallet_position_amt} BUSD so I have to buy / cover.\n";
 	$direction_to_go = "BUY";
 }
 
@@ -57,20 +57,20 @@ print_r($ticker);
 die();
 */
 
-// -- set the max / min values based on the delta bnb amt
+// -- set the max / min values based on the delta BUSD amt
 $max_trade_size = $_GLOBALS['per_order_max'];
 $min_trade_size = $_GLOBALS['per_order_min'];
 
-$amount_in_bnb = mt_rand($min_trade_size*100, $max_trade_size*100)/100; // number of COIN for buy / sell
+$amount_in_busd = mt_rand($min_trade_size*100, $max_trade_size*100)/100; // number of COIN for buy / sell
 
 // if the open position is close to the wallet balance, the next order amount submitted doesn't cause the open position to go beyond the delta - aka it adjusts the new orders to help get close to the wallet balance and create a perfect hedge and eventually stop the script from submitting new orders
-if ($amount_in_bnb > $abs_delta_wallet_position_amt) {
+if ($amount_in_busd > $abs_delta_wallet_position_amt) {
 	$min_trade_size = 0.05;
 	$max_trade_size = $abs_delta_wallet_position_amt;
 	$amount_in_bnb = mt_rand($min_trade_size*100, $max_trade_size*100)/100; // number of COIN for buy / sell
 }
 
-$amount_in_BUSD = $amount_in_bnb*$ticker['bidPrice'];
+$amount_in_busd = $amount_in_bnb*$ticker['bidPrice'];
 $amount = round(($amount_in_bnb*$ticker['bidPrice'])/100);
 
 // convert the $amount into bnb amount
