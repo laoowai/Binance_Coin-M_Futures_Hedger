@@ -13,8 +13,8 @@ include(__DIR__."/functions.php");
 $delivery_account_informations = $api->delivery_account_information();
 
 foreach($delivery_account_informations['assets'] as $asset) {
-	if ($asset['asset'] == 'BNB') {
-		$user['futures_wallet_amount_BNB'] = $asset;
+	if ($asset['asset'] == 'BUSD') {
+		$user['futures_wallet_amount_BUSD'] = $asset;
 //		print_r($asset);
 		break 1;
 	}
@@ -31,7 +31,7 @@ foreach($delivery_account_informations['positions'] as $position) {
 // print_r($user);
 
 // calculate difference / delta in the wallet vs. position
-$delta_wallet_position_amt = $user['futures_wallet_amount_BNB']['walletBalance'] - (abs($user['futures_current_position']['notionalValue']) - abs($user['futures_wallet_amount_BNB']['unrealizedProfit']));
+$delta_wallet_position_amt = $user['futures_wallet_amount_BUSD']['walletBalance'] - (abs($user['futures_current_position']['notionalValue']) - abs($user['futures_wallet_amount_BUSD']['unrealizedProfit']));
 $abs_delta_wallet_position_amt = abs($delta_wallet_position_amt);
 
 print "Delta btwn Wallet / Position Amt = {$delta_wallet_position_amt}\n";
