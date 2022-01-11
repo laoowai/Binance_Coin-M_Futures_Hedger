@@ -1,4 +1,4 @@
-`Binance Futures Coin-M Hedger`                                                        
+`Binance Futures USDS-M Hedger`                                                        
 
 ## Important notes
 1. This code utilizes the JaggedSoft PHP Binance API library (https://github.com/jaggedsoft/php-binance-api).  I've added various pieces of code to bring that library up to date to interact with the Binance Coin-M futures.
