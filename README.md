@@ -11,7 +11,7 @@ This project contains code that automates / places various trades (long [buy] & 
 Creating a hedge for your BUSD can be important in certain situations.  If you want more info on why you'd do this, please look at the resources section below.  This code allows you to hedge off your BUSD using (1) limit orders which save you money [because you're not submiting market orders which have higher fees than limit orders], (2) manage your hedge by consistently checking your Coin-M  wallet balance and buying or selling more of the derivative to match your futures wallet.  The reason I created this script is that in certain situations, you want to hedge your position and protect the FIAT value.  If your wallet balance is a lower amount, it's likely easy to create a hedged position, but when you have larger BTC amounts the ability to hedge your position can be difficult because creating large market orders to hedge your wallet balance would (1) result in higher fees (which is money you're just giving to the exchange willingly) and (2) bad pricing of the hedge since it's possible you'd affect the market.
 
 ## How do I use this and run it?
-This code is written by Convexical in PHP.  He is a versatile developer / engineer but I still love PHP. While I could code it in Python, C, C++, etc. - PHP is something that I can move faster in and for me it just works. If you're a coder and want to port it, I'd love to work with you. 
+This code is written by Convexical in PHP.  He is a versatile developer / engineer but I still love PHP. Laoowai make some change for USDS-M Futures.
 
 In order to get this code to work correctly, you have to do the following:
 
